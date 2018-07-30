@@ -117,38 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Add File_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add File_16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icono-del-azul-del-usuario-43464682" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icono-del-azul-del-usuario-43464682.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="proveedor-cliente-1500x800" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\proveedor-cliente-1500x800.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Save_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Save_16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="organiza_tus_compras_reference" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\organiza_tus_compras_reference.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="descarga" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\descarga.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="05577b494a6577f" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\05577b494a6577f.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Cancel_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel_16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Search_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Search_16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="maxresdefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\maxresdefault.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo m" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Imprimirbutton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAANlJREFUOE9j
+        wAf8qrb+B2EolzCo6J7zHxnDDEAXhyrHBCBJZAAzABkQZcC+c0/+RzXvghsAYoPEQIBoF3z48vN/57Jz
+        YAxiwwCGARm1k66nVfb/B2GYjYQwTH1m7aSrDCDGhoNXwBgk2b39A14MUrPv5GkgPgM2hCwD9oMNOE2+
+        ATD1GAYkde4FK8CHk7v24TaAVIxiwKItJ/53zF5PFAapxTBg8ebj8KRKCIPUYhgAwiBJQgCkBqYebEBW
+        7aRLIAYIE2sATH1mzaSL0PQIASBJYjBUORAwMAAAT192lq8ZAcwAAAAASUVORK5CYII=
+</value>
   </data>
 </root>

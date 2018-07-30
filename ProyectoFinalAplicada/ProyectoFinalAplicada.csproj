@@ -31,8 +31,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,14 +57,160 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="BLL\ArticuloBLL.cs" />
+    <Compile Include="BLL\CompraBLL.cs" />
+    <Compile Include="BLL\PagoCompraBLL.cs" />
+    <Compile Include="BLL\Repositorio.cs" />
+    <Compile Include="BLL\RepositorioBase.cs" />
+    <Compile Include="BLL\SuplidorBLL.cs" />
+    <Compile Include="BLL\UsuarioBLL.cs" />
+    <Compile Include="DAL\Contexto.cs" />
+    <Compile Include="Entidades\Articulos.cs" />
+    <Compile Include="Entidades\Compra.cs" />
+    <Compile Include="Entidades\CompraDetalles.cs" />
+    <Compile Include="Entidades\PagoCompra.cs" />
+    <Compile Include="Entidades\Suplidor.cs" />
+    <Compile Include="Entidades\Usuarios.cs" />
+    <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuPrincipal.Designer.cs">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Consulta\cArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consulta\cArticulos.Designer.cs">
+      <DependentUpon>cArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consulta\cCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consulta\cCompra.Designer.cs">
+      <DependentUpon>cCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consulta\cPagoCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consulta\cPagoCompra.Designer.cs">
+      <DependentUpon>cPagoCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consulta\cSuplidor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consulta\cSuplidor.Designer.cs">
+      <DependentUpon>cSuplidor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consulta\cUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consulta\cUsuario.Designer.cs">
+      <DependentUpon>cUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rArticulos.Designer.cs">
+      <DependentUpon>rArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rCompra.Designer.cs">
+      <DependentUpon>rCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rPagoCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rPagoCompra.Designer.cs">
+      <DependentUpon>rPagoCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rSuplidor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rSuplidor.Designer.cs">
+      <DependentUpon>rSuplidor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rUsuario.Designer.cs">
+      <DependentUpon>rUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\fReporteArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\fReporteArticulo.Designer.cs">
+      <DependentUpon>fReporteArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\fReporteCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\fReporteCompra.Designer.cs">
+      <DependentUpon>fReporteCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\fReporteSuplidor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\fReporteSuplidor.Designer.cs">
+      <DependentUpon>fReporteSuplidor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\fReporteUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\fReporteUsuario.Designer.cs">
+      <DependentUpon>fReporteUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\fResportePagoCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\fResportePagoCompra.Designer.cs">
+      <DependentUpon>fResportePagoCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\ListadoArticulo1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoArticulo1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ListadoCompra.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoCompra.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ListadoPagoCompra.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoPagoCompra.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ListadoSuplidor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoSuplidor.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ListadoUsuario.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoUsuario.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -59,7 +219,75 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\Consulta\cArticulos.resx">
+      <DependentUpon>cArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consulta\cCompra.resx">
+      <DependentUpon>cCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consulta\cPagoCompra.resx">
+      <DependentUpon>cPagoCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consulta\cSuplidor.resx">
+      <DependentUpon>cSuplidor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consulta\cUsuario.resx">
+      <DependentUpon>cUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rArticulos.resx">
+      <DependentUpon>rArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rCompra.resx">
+      <DependentUpon>rCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rPagoCompra.resx">
+      <DependentUpon>rPagoCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rSuplidor.resx">
+      <DependentUpon>rSuplidor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rUsuario.resx">
+      <DependentUpon>rUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\fReporteArticulo.resx">
+      <DependentUpon>fReporteArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\fReporteCompra.resx">
+      <DependentUpon>fReporteCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\fReporteSuplidor.resx">
+      <DependentUpon>fReporteSuplidor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\fReporteUsuario.resx">
+      <DependentUpon>fReporteUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\fResportePagoCompra.resx">
+      <DependentUpon>fResportePagoCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ListadoArticulo1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoArticulo1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ListadoCompra.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoCompra.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ListadoPagoCompra.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoPagoCompra.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ListadoSuplidor.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoSuplidor.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ListadoUsuario.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoUsuario.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -69,6 +297,41 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono-del-azul-del-usuario-43464682.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\proveedor-cliente-1500x800.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add File_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\05577b494a6577f.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maxresdefault.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo m.png" />
+    <None Include="Resources\organiza_tus_compras_reference.jpg" />
+    <None Include="Resources\descarga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\Scripts\Scripts.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
