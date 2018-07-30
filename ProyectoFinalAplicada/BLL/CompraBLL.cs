@@ -44,15 +44,14 @@ namespace ProyectoFinalAplicada.BLL
             try
             {
                 var comprar = Buscar(compra.CompraId);
-                Compra compraA = Buscar(compra.CompraId);
 
                 var TotalSupli = contexto.sublidors.Find(compra.SuplidorId);
-                var TotalSupliAnt = contexto.sublidors.Find(compraA.SuplidorId);
+                var TotalSupliAnt = contexto.sublidors.Find(comprar.SuplidorId);
 
-                if (compraA.SuplidorId != compra.SuplidorId)
+                if (comprar.SuplidorId != compra.SuplidorId)
                 {
-                    TotalSupli.CuentasPorPagar += compra.Total;
-                    TotalSupliAnt.CuentasPorPagar -= compraA.Total;
+                    TotalSupli.CuentasPorPagar += compra.Total ;
+                    TotalSupliAnt.CuentasPorPagar -= comprar.Total ;
                     SuplidorBLL.Modificar(TotalSupli);
                     SuplidorBLL.Modificar(TotalSupliAnt);
                 }
@@ -122,14 +121,16 @@ namespace ProyectoFinalAplicada.BLL
             bool paso = false;
             Contexto contexto = new Contexto();
             Compra compra = contexto.compras.Find(id);
+            PagoCompra pago = contexto.pagoCompras.Find(id);
             try
             {
+                
                 foreach (var item in compra.Detalles)
                 {
                     var Articulos = contexto.articulos.Find(item.ArticuloId);
                     Articulos.Inventario -= item.Cantidad;
                 }
-                
+                contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar -= pago.MontoPagar;
                 contexto.compras.Remove(compra);
                 if (contexto.SaveChanges() > 0)
                 {

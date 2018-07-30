@@ -26,6 +26,9 @@ namespace ProyectoFinalAplicada.UI.Registro
 
         private Compra LlenaClase()
         {
+            TotaltextBox.Text = 0.ToString();
+            SubTotaltextBox.Text = 0.ToString();
+            ItbistextBox.Text = 0.ToString();
             Compra compra = new Compra();
             compra.CompraId = Convert.ToInt32(IdnumericUpDown.Value);
             compra.Fecha = FechadateTimePicker.Value;
@@ -244,12 +247,13 @@ namespace ProyectoFinalAplicada.UI.Registro
             float Total = 0;
             foreach (var item in compraDetalles)
             {
-                Total -= item.Importe;
+                Total -= item.Importe ;
             }
             float SubTotal = 0;
             float Itbis = 0;
+            Total = Total * (-1);
             Itbis = Total * 0.18f;
-            SubTotal = Total - Itbis;
+            SubTotal = Total - Itbis ;
             SubTotaltextBox.Text = SubTotal.ToString();
             ItbistextBox.Text = Itbis.ToString();
             TotaltextBox.Text = Total.ToString();

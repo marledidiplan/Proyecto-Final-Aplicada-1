@@ -110,7 +110,7 @@ namespace ProyectoFinalAplicada.UI.Registro
             }
             suplidor = LlenaClase();
 
-            if (suplidor != null)
+            if (IdSuplidornumericUpDown.Value ==0)
             {
                 paso = BLL.SuplidorBLL.Guardar(suplidor);
             }

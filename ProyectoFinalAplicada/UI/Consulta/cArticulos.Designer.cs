@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(cArticulos));
             this.ConsultadataGridView = new System.Windows.Forms.DataGridView();
             this.HastadateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -40,7 +41,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Buscarbutton = new System.Windows.Forms.Button();
             this.Imprimirbutton = new System.Windows.Forms.Button();
+            this.articulosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ConsultadataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.articulosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ConsultadataGridView
@@ -101,9 +104,6 @@
             // FiltrocomboBox
             // 
             this.FiltrocomboBox.FormattingEnabled = true;
-            this.FiltrocomboBox.Items.AddRange(new object[] {
-            "ArticuloId ",
-            "Descripcion"});
             this.FiltrocomboBox.Location = new System.Drawing.Point(74, 17);
             this.FiltrocomboBox.Name = "FiltrocomboBox";
             this.FiltrocomboBox.Size = new System.Drawing.Size(113, 21);
@@ -155,6 +155,10 @@
             this.Imprimirbutton.UseVisualStyleBackColor = true;
             this.Imprimirbutton.Click += new System.EventHandler(this.Imprimirbutton_Click);
             // 
+            // articulosBindingSource
+            // 
+            this.articulosBindingSource.DataSource = typeof(ProyectoFinalAplicada.Entidades.Articulos);
+            // 
             // cArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,6 +178,7 @@
             this.Name = "cArticulos";
             this.Text = "Consulta Articulos";
             ((System.ComponentModel.ISupportInitialize)(this.ConsultadataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.articulosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,5 +197,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Imprimirbutton;
+        private System.Windows.Forms.BindingSource articulosBindingSource;
     }
 }

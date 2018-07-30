@@ -45,11 +45,9 @@ namespace ProyectoFinalAplicada
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-
             SqlConnection conectar = new SqlConnection(@"Data Source =.\sqlExpress; Initial Catalog = FinallyDB;" + "Integrated Security = True;");
             conectar.Open();
-            string cd = "Select Nombre, Contrasena from Usuarios where Nombre= '" + NombretextBox.Text + "' and Contrasena='" + ContrasenatextBox + "'";
+            string cd = "Select Nombre, Contrasena from Usuarios where Nombre= '" + NombretextBox.Text + "' and Contrasena='" + ContrasenatextBox.Text + "'";
             SqlCommand command = new SqlCommand(cd, conectar);
             SqlDataReader sqlData = command.ExecuteReader();
             if (sqlData.Read())
@@ -64,7 +62,7 @@ namespace ProyectoFinalAplicada
             }
             else
                 MessageBox.Show("Nombre o Contrasena Incorrecta", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                conectar.Close();
+            conectar.Close();
 
 
             //MessageBox.Show("Usuario Correcto");

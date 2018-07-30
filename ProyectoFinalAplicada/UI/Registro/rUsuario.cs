@@ -57,7 +57,7 @@ namespace ProyectoFinalAplicada.UI.Registro
             }
             usuario = LlenaClase();
 
-            if (usuario != null)
+            if (IdnumericUpDown.Value == 0)
             {
                 paso = BLL.UsuarioBLL.Guardar(usuario);
             }
