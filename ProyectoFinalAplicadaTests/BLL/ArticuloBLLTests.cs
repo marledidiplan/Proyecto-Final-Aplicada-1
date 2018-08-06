@@ -1,12 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProyectoFinalAplicada.BLL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.DAL;
 using System.Linq.Expressions;
+using Entidades;
+using BLL;
+using DAL;
 
 namespace ProyectoFinalAplicada.BLL.Tests
 {
@@ -67,12 +66,9 @@ namespace ProyectoFinalAplicada.BLL.Tests
         }
 
         [TestMethod()]
-        public void GetListTest(Expression<Func<Articulos, bool>> expression)
+        public void GetListTest()
         {
-            Contexto contexto = new Contexto();
-
-            List<Articulos> articulo = new List<Articulos>();
-            articulo = contexto.articulos.Where(expression).ToList();
+            var articulo = ArticuloBLL.GetList(x => true);
             Assert.IsNotNull(articulo);
         }
     }

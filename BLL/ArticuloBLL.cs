@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
 using System.Data.Entity;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.DAL;
+using Entidades;
+using DAL;
 
-namespace ProyectoFinalAplicada.BLL
+namespace BLL
 {
    public class ArticuloBLL
     {
@@ -107,11 +106,11 @@ namespace ProyectoFinalAplicada.BLL
             return articulos;
         }
 
-        public static float CalcularGanancia(float costo, float precio)
+        public static int CalcularGanancia(int costo, int precio)
         {
-            float resultado;
+            int resultado;
             resultado = precio - costo;
-            resultado /= costo;
+            resultado = resultado/ costo;
             resultado *= 100;
             return resultado;
 

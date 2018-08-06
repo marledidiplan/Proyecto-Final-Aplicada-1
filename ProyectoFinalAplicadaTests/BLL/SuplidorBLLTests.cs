@@ -1,13 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProyectoFinalAplicada.BLL;
+﻿using BLL;
+using DAL;
+using Entidades;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using ProyectoFinalAplicada.Entidades;
 using System.Linq.Expressions;
-using ProyectoFinalAplicada.DAL;
-using System.Data.Entity;
+
 
 namespace ProyectoFinalAplicada.BLL.Tests
 {
@@ -64,13 +63,10 @@ namespace ProyectoFinalAplicada.BLL.Tests
         }
 
         [TestMethod()]
-        public void GetListTest(Expression<Func<Suplidor ,bool>> expression)
+        public void GetListTest()
         {
-            Contexto contexto = new Contexto();
-            List<Suplidor> supli = new List<Suplidor>();
-            supli = contexto.sublidors.Where(expression).ToList();
-                
-            Assert.IsNotNull(supli);
+            var suplidor = SuplidorBLL.GetList(x => true);
+            Assert.IsNotNull(suplidor);
         }
     }
 }

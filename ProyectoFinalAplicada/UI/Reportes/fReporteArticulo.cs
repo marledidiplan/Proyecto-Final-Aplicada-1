@@ -1,13 +1,8 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Linq.Expressions;
-using ProyectoFinalAplicada.Entidades;
+
 
 namespace ProyectoFinalAplicada.UI.Reportes
 {

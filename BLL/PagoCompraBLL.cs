@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
 using System.Data.Entity;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.DAL;
+using Entidades;
+using DAL;
 
-namespace ProyectoFinalAplicada.BLL
+namespace BLL
 {
     public class PagoCompraBLL
     {
@@ -41,22 +40,26 @@ namespace ProyectoFinalAplicada.BLL
                
                 PagoCompra pagoC = Buscar(pago.PagoCompraId);
 
-                var TotalSupli = contexto.sublidors.Find(pago.SuplidorId);
-                var TotalSupliAnt = contexto.sublidors.Find(pagoC.SuplidorId);
 
-                if (pagoC.SuplidorId != pago.SuplidorId)
-                {
-                    TotalSupli.CuentasPorPagar += pago.MontoPagar;
-                    TotalSupliAnt.CuentasPorPagar -= pagoC.MontoPagar;
-                    SuplidorBLL.Modificar(TotalSupli);
-                    SuplidorBLL.Modificar(TotalSupliAnt);
-                }
+                //var TotalSupli = contexto.sublidors.Find(pago.SuplidorId);
+                //var TotalSupliAnt = contexto.sublidors.Find(pagoC.SuplidorId);
+
+                //if (pagoC.SuplidorId != pago.SuplidorId)
+                //{
+                //    TotalSupli.CuentasPorPagar += pago.MontoPagar;
+                //    TotalSupliAnt.CuentasPorPagar -= pagoC.MontoPagar;
+                //    SuplidorBLL.Modificar(TotalSupli);
+                //    SuplidorBLL.Modificar(TotalSupliAnt);
+                //}
 
                 PagoCompra pagoCompra = Buscar(pago.PagoCompraId);
-                float desigualdad = pago.MontoPagar - pagoCompra.MontoPagar;
+                int desigualdad = pago.MontoPagar - pagoCompra.MontoPagar;
                 var pagos = contexto.sublidors.Find(pago.SuplidorId);
-                pagos.CuentasPorPagar += desigualdad;
+                var monto = contexto.pagoCompras.Find(pago.PagoCompraId);
+                pagos.CuentasPorPagar -= desigualdad;
+                monto.Deuda -= desigualdad;
                 SuplidorBLL.Modificar(pagos);
+                Modificar(monto);
 
                 contexto.Entry(pago).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
@@ -98,6 +101,7 @@ namespace ProyectoFinalAplicada.BLL
             try
             {
                 pago = contexto.pagoCompras.Find(id);
+              
                 contexto.sublidors.Find(pago.SuplidorId).CuentasPorPagar += pago.MontoPagar;
                 contexto.pagoCompras.Remove(pago);
                 if (contexto.SaveChanges() > 0)

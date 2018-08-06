@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
 using System.Data.Entity;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.DAL;
+using DAL;
+using Entidades;
 
-
-namespace ProyectoFinalAplicada.BLL
+namespace BLL
 {
    public class CompraBLL
     {
@@ -24,10 +22,25 @@ namespace ProyectoFinalAplicada.BLL
                     foreach (var item in compra.Detalles)
                     {
                         contexto.articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
+
                     }
-                    contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar += compra.Total;
-                    contexto.SaveChanges();
-                    paso = true;
+                    var balance = contexto.balances.Find(compra.BalanceId);
+                    if (compra.Total == compra.General)
+                    {
+                        balance.Monto -= compra.Total;
+                        
+                    }
+                    else
+                    {
+                        contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar+=compra.Total;
+                        balance.Monto -= compra.BalanceC;
+
+                    }
+                    //contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar += compra.Total;
+                    //contexto.balances.Find(compra.BalanceId).Monto -= compra.BalanceC;
+
+                    
+                    paso = contexto.SaveChanges()>0;
                 }
             }
             catch (Exception)
@@ -37,24 +50,53 @@ namespace ProyectoFinalAplicada.BLL
             return paso;
         }
 
+
         public static bool Modificar(Compra compra)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
             try
             {
-                var comprar = Buscar(compra.CompraId);
 
-                var TotalSupli = contexto.sublidors.Find(compra.SuplidorId);
-                var TotalSupliAnt = contexto.sublidors.Find(comprar.SuplidorId);
-
-                if (comprar.SuplidorId != compra.SuplidorId)
+                var balance = contexto.balances.Find(compra.BalanceId);
+                if (compra.Total == compra.General)
                 {
-                    TotalSupli.CuentasPorPagar += compra.Total ;
-                    TotalSupliAnt.CuentasPorPagar -= comprar.Total ;
-                    SuplidorBLL.Modificar(TotalSupli);
-                    SuplidorBLL.Modificar(TotalSupliAnt);
+                    balance.Monto -= compra.Total;
+                    contexto.Entry(balance).State = EntityState.Modified;
+
                 }
+                else
+                {
+                    contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar += compra.Total;
+                    balance.Monto -= compra.BalanceC;
+
+                    var suplidorr= contexto.sublidors.Find(compra.SuplidorId);
+                    int desigualdal = compra.Total + suplidorr.CuentasPorPagar;
+
+                    Suplidor supli = contexto.sublidors.Find(compra.SuplidorId);
+                    supli.CuentasPorPagar -= compra.Total;
+                    SuplidorBLL.Modificar(supli);
+
+                    Compra obtener = new Compra();
+                    int disimilitud = compra.Total + obtener.Total;
+                    Balance balanc = new Balance();
+                    balanc.Monto += compra.BalanceC;
+                    BalanceBLL.Buscar(disimilitud);
+
+                }
+
+                var comprar = contexto.compras.Find(compra.CompraId);
+
+                //var TotalSupli = contexto.sublidors.Find(compra.SuplidorId);
+                //var TotalSupliAnt = contexto.sublidors.Find(comprar.SuplidorId);
+
+                //if (comprar.SuplidorId != compra.SuplidorId)
+                //{
+                //    TotalSupli.CuentasPorPagar += compra.Total ;
+                //    TotalSupliAnt.CuentasPorPagar -= comprar.Total ;
+                //    //SuplidorBLL.Modificar(TotalSupli);
+                //    //SuplidorBLL.Modificar(TotalSupliAnt);
+                //}
 
                 foreach (var item in comprar.Detalles)
                 {
@@ -131,6 +173,8 @@ namespace ProyectoFinalAplicada.BLL
                     Articulos.Inventario -= item.Cantidad;
                 }
                 contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar -= pago.MontoPagar;
+                contexto.balances.Find(compra.BalanceId).Monto += compra.BalanceC;
+
                 contexto.compras.Remove(compra);
                 if (contexto.SaveChanges() > 0)
                 {
@@ -160,10 +204,14 @@ namespace ProyectoFinalAplicada.BLL
             }
             return compra;
         }
-        public static float CalcularImporte(float cantidad, float precio)
+        public static int CalcularImporte(int cantidad, int precio)
         {
             return precio * cantidad;
         }
 
+        public static int CalcularDevuelta(int efectivo , int total)
+        {
+           return efectivo  - total;
+        }
     }
 }

@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.BLL;
 using System.Linq.Expressions;
 using ProyectoFinalAplicada.UI.Reportes;
-
+using Entidades;
+using BLL;
 namespace ProyectoFinalAplicada.UI.Consulta
 {
     public partial class cPagoCompra : Form
@@ -36,6 +30,12 @@ namespace ProyectoFinalAplicada.UI.Consulta
                 case 2: Filtro = p => p.SuplidorId.Equals(CriteriotextBox.Text) && p.Fecha>= DesdedateTimePicker.Value && p.Fecha <= HastadateTimePicker.Value;
                     break;
                 case 3: Filtro = p=>p.MontoPagar.Equals(CriteriotextBox.Text) && p.Fecha >= DesdedateTimePicker.Value && p.Fecha <= HastadateTimePicker.Value;
+                    break;
+                case 4: Filtro = p => p.Deuda.Equals(CriteriotextBox.Text) && p.Fecha >= DesdedateTimePicker.Value && p.Fecha <= HastadateTimePicker.Value;
+                    break;
+                case 5: Filtro = p => p.CompraId.Equals(CriteriotextBox.Text) && p.Fecha >= DesdedateTimePicker.Value && p.Fecha <= HastadateTimePicker.Value;
+                    break;
+                case 6: Filtro = p => p.BalanceId.Equals(CriteriotextBox.Text) && p.Fecha >= DesdedateTimePicker.Value && p.Fecha <= HastadateTimePicker.Value;
                     break;
 
             }

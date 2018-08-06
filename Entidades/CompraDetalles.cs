@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
+﻿
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace ProyectoFinalAplicada.Entidades
+namespace Entidades
 {
     public class CompraDetalles
     {
         public int Id { get; set; }
         public int CompraDetalleId { get; set; }
         public int ArticuloId { get; set; }
-        
         public int Cantidad { get; set; }
-        public float Precio { get; set; }
-        public float Importe { get; set; }
+        public int Precio { get; set; }
+        public int Importe { get; set; }
 
         [ForeignKey("ArticuloId")]
         public virtual Articulos Articulo { get; set; }
@@ -29,11 +24,11 @@ namespace ProyectoFinalAplicada.Entidades
             CompraDetalleId = 0;
             ArticuloId = 0;
             Cantidad = 0;
-            Precio = 0f;
-            Importe = 0f;
+            Precio = 0;
+            Importe = 0;
         }
 
-        public CompraDetalles(int id, int compraDetalleId, int articuloId,  int cantidad, float precio, float importe)
+        public CompraDetalles(int id, int compraDetalleId, int articuloId,  int cantidad, int precio, int importe)
         {
             this.Id = id;
             this.CompraDetalleId = compraDetalleId;

@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.BLL;
-using ProyectoFinalAplicada.UI.Registro;
-using ProyectoFinalAplicada.UI.Consulta;
 using System.Data.SqlClient;
+using System.Windows.Forms;
+
 
 namespace ProyectoFinalAplicada
 {

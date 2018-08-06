@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using System.ComponentModel.DataAnnotations;
 
-namespace ProyectoFinalAplicada.Entidades
+namespace Entidades
 {
     public class Suplidor
     {
@@ -15,7 +12,7 @@ namespace ProyectoFinalAplicada.Entidades
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
-        public float CuentasPorPagar { get; set; }
+        public int CuentasPorPagar { get; set; }
 
 
         public Suplidor()
@@ -26,7 +23,7 @@ namespace ProyectoFinalAplicada.Entidades
             Direccion = string.Empty;
             Telefono = string.Empty;
             Email = string.Empty;
-            CuentasPorPagar = 0f;
+            CuentasPorPagar = 0;
         }
 
         public override string ToString()

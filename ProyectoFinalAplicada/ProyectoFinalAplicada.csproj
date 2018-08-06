@@ -57,20 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\ArticuloBLL.cs" />
-    <Compile Include="BLL\CompraBLL.cs" />
-    <Compile Include="BLL\PagoCompraBLL.cs" />
-    <Compile Include="BLL\Repositorio.cs" />
-    <Compile Include="BLL\RepositorioBase.cs" />
-    <Compile Include="BLL\SuplidorBLL.cs" />
-    <Compile Include="BLL\UsuarioBLL.cs" />
-    <Compile Include="DAL\Contexto.cs" />
-    <Compile Include="Entidades\Articulos.cs" />
-    <Compile Include="Entidades\Compra.cs" />
-    <Compile Include="Entidades\CompraDetalles.cs" />
-    <Compile Include="Entidades\PagoCompra.cs" />
-    <Compile Include="Entidades\Suplidor.cs" />
-    <Compile Include="Entidades\Usuarios.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +83,12 @@
     <Compile Include="UI\Consulta\cCompra.Designer.cs">
       <DependentUpon>cCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Consulta\cEntradaBalance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consulta\cEntradaBalance.Designer.cs">
+      <DependentUpon>cEntradaBalance.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Consulta\cPagoCompra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +106,12 @@
     </Compile>
     <Compile Include="UI\Consulta\cUsuario.Designer.cs">
       <DependentUpon>cUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rEntradaBalance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rEntradaBalance.Designer.cs">
+      <DependentUpon>rEntradaBalance.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Registro\rArticulos.cs">
       <SubType>Form</SubType>
@@ -157,6 +155,12 @@
     <Compile Include="UI\Reportes\fReporteCompra.Designer.cs">
       <DependentUpon>fReporteCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Reportes\fReporteEntradaBalance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\fReporteEntradaBalance.Designer.cs">
+      <DependentUpon>fReporteEntradaBalance.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Reportes\fReporteSuplidor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +189,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ListadoCompra.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ListadoEntradabalance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoEntradabalance.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Reportes\ListadoPagoCompra.cs">
@@ -227,6 +237,9 @@
     <EmbeddedResource Include="UI\Consulta\cCompra.resx">
       <DependentUpon>cCompra.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consulta\cEntradaBalance.resx">
+      <DependentUpon>cEntradaBalance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Consulta\cPagoCompra.resx">
       <DependentUpon>cPagoCompra.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Consulta\cUsuario.resx">
       <DependentUpon>cUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rEntradaBalance.resx">
+      <DependentUpon>rEntradaBalance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registro\rArticulos.resx">
       <DependentUpon>rArticulos.cs</DependentUpon>
@@ -257,6 +273,9 @@
     <EmbeddedResource Include="UI\Reportes\fReporteCompra.resx">
       <DependentUpon>fReporteCompra.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\fReporteEntradaBalance.resx">
+      <DependentUpon>fReporteEntradaBalance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\fReporteSuplidor.resx">
       <DependentUpon>fReporteSuplidor.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +292,10 @@
     <EmbeddedResource Include="UI\Reportes\ListadoCompra.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ListadoCompra.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ListadoEntradabalance.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoEntradabalance.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\ListadoPagoCompra.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -329,10 +352,21 @@
     <None Include="Resources\descarga.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAL\Scripts\Scripts.sql" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{f7635f0b-1337-4143-90ce-4158d69b25d0}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{674c94b4-5ebc-4741-bb87-e8cfcb50961e}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{b89ea515-ffa2-4f2b-8609-a53f1b5db40b}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
 
-namespace ProyectoFinalAplicada.BLL
+namespace BLL
 {
     public interface Repositorio<T> where T : class
     {

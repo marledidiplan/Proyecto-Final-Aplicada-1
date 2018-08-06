@@ -1,14 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProyectoFinalAplicada.BLL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.DAL;
-using System.Linq.Expressions;
-using System.Data.Entity;
 
+using System;
+using Entidades;
+using BLL;
 
 namespace ProyectoFinalAplicada.BLL.Tests
 {
@@ -18,13 +12,13 @@ namespace ProyectoFinalAplicada.BLL.Tests
         [TestMethod()]
         public void GuardarTest()
         {
-            //Compra compra = new Compra();
-            //bool paso;
-            //compra.CompraId = 3;
-            //compra.Fecha = DateTime.Now;
-            //compra.Detalles.Add(new CompraDetalles( 0, 0, 1, 1, 1,3 ,20f ,5f));
-            //compra.Detalles.Add(new CompraDetalles(0, 0, 4, 4, 4, 6, 10f, 7f));
-            //paso = CompraBLL.Guardar(compra);
+            Compra compra = new Compra();
+            bool paso;
+            compra.CompraId = 3;
+            compra.Fecha = DateTime.Now;
+            compra.Detalles.Add(new CompraDetalles(0, 0,  1, 3, 20, 5));
+            compra.Detalles.Add(new CompraDetalles(0, 0,  4, 6, 10, 7));
+            paso = CompraBLL.Guardar(compra);
 
 
             Assert.Fail();

@@ -241,6 +241,25 @@
         KxexXH8J7TCJ/o/RnYrPYBpbNX+p8hHJ8OtihVHG7J7/6gCpqvoOJmTM7d95MB4AAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="consultaEntradaBalanceToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAL+SURBVEhL7ZbrT1JhHMfdamut5VZv2nrRH9Baf0lv2/oDetd64eYSkfSULeMiCJoVl8Md5lEY
+        BU4zp47QUhpq5qXCC00sEUyRS8I559dzLiTNQ5Mp1Vbf7TN+4+zZh+f7nMNO1b8bTGo4X2lELfYzvI7L
+        TY2mWiTXQ6URKwwrvJLLbxMr8Qiv5PLHxLekhtPMhXsP7RUDU1tAosLDvJIL2vEJ9GtyUMFMzoXhbofV
+        zSu5/BczoWmArQzFzhSaN9NUWaS+oUVFObA4s0uDczzFzsksBQZ/siwG3mXYtYX8/VUz9cZ3uKpJ9BFL
+        kmVROKZCDl51joaeIFf1DqraMrpTFkPzWXZtISEklmoJL6/kUomqaXR3xhJb8DmWgN1cDt7MfgTfUHDf
+        X6Zg1V+2SXZmqo5+JX/JUoKCMOLDRh5cw5PQ3OkEucEFrSYPqtgOnQ4fuPoDUV7JRUicRVV7Qml2Zh4N
+        x+tUSbqCaRhYJqF/KQcKWx+0E4Pw6lMKphPAEoqRQPhnoEljpeoV+EVee3RVvwiE4FHPIEzF6R/SYrzB
+        RbjdZl6+ShDHSoqZelc3uarzaI7E84KsIN5vkDC/ngOs3fbTToWQGT3b9TLtlZJipmrf1F7V3egOF8KF
+        jmNgOQ/uqRi06N2CsmKcw9O0RGlSlBSXm8jaOqisXkFZMd2BWZC0WbRHJk6ls3Cnw1byfAtoPf6suNVw
+        48jETHREH7jHFgSFDOOrabRbc0rcpju3J27FybcLS1AO04jJuUWW0dAcNKM3jUb0pvF8JrpfGs2ADHfT
+        DWpTLStlgmHY8UaV2dTcYXeWg+PZyLh3aCLc1fsygmmspPHpCH3/cRfdqLHSakcfxZyna2weDL5Ruklt
+        paQ6optXHj5iue5yg8oYt/j8VIuWyKDZVyu3nKqT669J1JZO9IiZREq8pu7Bkwv8ksOnRqk/26BE0t4A
+        rTR7MmIVPlGjJE7ylysXsVx/Ce0wif6P0Z2Kz2AaWzV/qfIRyfDrYoVRxuye/+oAqar6DiZkzO3feTAe
+        AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="consultaToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAATdJREFUOE9j
@@ -382,6 +401,17 @@
         Ej/RYihqxLRUiy+vO9ZHSgu/b4u74WPLtw/kPwg/y0oWZi9hfsaDxbfXkO47DVl2IPFGQiVhMMye2D7w
         a3kjQcxlbHmJaODiTKgJ2mC/3Q6z0ACJVf95YHWe4EnCtCgTzStFVhJlT+IyZ0AXp52V2KI0rW2xKRYS
         KF5NkVJxyKfZLwXUE0ph86T6/0Sl+gHvZpNUA3SpbgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="registroEntradaBalanceToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAEbSURBVDhPYxgmIG5O2X9yMFQ7xIBdD/aShAkaMP/0iv+5y5rAeP6ZFRjyWA0oXdv+v2xdB5id
+        vbTx//Vnd/9ffXoHbAi6PFYDSta0AXE7mJ21pPH/zRf3/994fg9sGLo8VgOQMcgLmUsagAY1EO8FUjCG
+        AeRgqHYIAAmkLar9X7y67X/lxu7/jVsn/u/YPe3/hINz/08/vuj/PKCXll5c+3/ttc2YmkEgcmaxCEgi
+        Z3nT58oNPX+atk3637Zr6v+2nVP/123uA8ZAx/+8Fc3/E+dVgAz4C9WGCpLmVSjFzikNBSroSJxXeQio
+        +DMQfy9c2fK6fde0r7NPLsVuOz6QNLdMKnZOuW/8nPLGlIU1BxLmlr+CSlEDMDAAANzhpyQZu8afAAAA
+        AElFTkSuQmCC
 </value>
   </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

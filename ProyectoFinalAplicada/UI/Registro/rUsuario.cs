@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using Entidades;
+using System;
 using System.Windows.Forms;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.BLL;
-using System.Data.Entity;
+
 
 namespace ProyectoFinalAplicada.UI.Registro
 {

@@ -1,13 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProyectoFinalAplicada.BLL;
+﻿using BLL;
+using DAL;
+using Entidades;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.DAL;
 using System.Linq.Expressions;
-using System.Data.Entity;
+
 
 namespace ProyectoFinalAplicada.BLL.Tests
 {
@@ -51,14 +50,20 @@ namespace ProyectoFinalAplicada.BLL.Tests
         [TestMethod()]
         public void EliminarTest()
         {
+            int id = 3;
+            bool paso;
+            paso = PagoCompraBLL.Eliminar(id);
 
-            Assert.Fail();
+            Assert.AreEqual(paso,true);
         }
 
         [TestMethod()]
-        public void GetListTest()
+        public void GetListTest(Expression<Func<PagoCompra , bool>> expression)
         {
-            Assert.Fail();
+            List<PagoCompra> pagoCompras = new List<PagoCompra>();
+            Contexto contexto = new Contexto();
+            pagoCompras = contexto.pagoCompras.Where(expression).ToList();
+            Assert.IsNotNull(pagoCompras);
         }
     }
 }

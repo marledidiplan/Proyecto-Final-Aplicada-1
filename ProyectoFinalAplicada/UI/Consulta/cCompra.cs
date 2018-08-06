@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.BLL;
 using System.Linq.Expressions;
 using ProyectoFinalAplicada.UI.Reportes;
+using Entidades;
+using BLL;
 
 namespace ProyectoFinalAplicada.UI.Consulta
 {

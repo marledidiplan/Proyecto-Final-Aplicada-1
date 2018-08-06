@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
+using Entidades;
 using System.Data.Entity;
-using ProyectoFinalAplicada.Entidades;
 
-namespace ProyectoFinalAplicada.DAL
+
+namespace DAL
 {
    public class Contexto : DbContext
     {
@@ -14,6 +12,8 @@ namespace ProyectoFinalAplicada.DAL
         public DbSet<Articulos> articulos { get; set; }
         public DbSet<Compra> compras { get; set; }
         public DbSet<PagoCompra> pagoCompras { get; set; }
+        public DbSet<EntradaBalance> entradaBalances { get; set; }
+        public DbSet<Balance> balances { get; set; }
 
 
         public Contexto() : base("ConStr")

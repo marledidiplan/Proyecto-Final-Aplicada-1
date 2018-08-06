@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using BLL;
+using Entidades;
+using System;
 using System.Windows.Forms;
-using System.Data.Entity;
-using ProyectoFinalAplicada.BLL;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.DAL;
+
 
 
 namespace ProyectoFinalAplicada.UI.Registro
@@ -27,9 +20,9 @@ namespace ProyectoFinalAplicada.UI.Registro
             Articulos articulo = new Articulos();
             articulo.ArticuloId = Convert.ToInt32(IdnumericUpDown.Value);
             articulo.Descripcion = DescripciontextBox.Text;
-            articulo.Precio = Convert.ToInt32(PreciotextBox.Text);
             articulo.Costo = Convert.ToInt32(CostotextBox.Text);
-            articulo.Ganancia = Convert.ToSingle(GananciatextBox.Text);
+            articulo.Precio = Convert.ToInt32(PreciotextBox.Text);
+            articulo.Ganancia = Convert.ToInt32(GananciatextBox.Text);
             return articulo;
         }
 
@@ -64,8 +57,8 @@ namespace ProyectoFinalAplicada.UI.Registro
             if (articulo != null)
             {
                 DescripciontextBox.Text = articulo.Descripcion;
-                PreciotextBox.Text = articulo.Precio.ToString();
                 CostotextBox.Text = articulo.Costo.ToString();
+                PreciotextBox.Text = articulo.Precio.ToString();
                 GananciatextBox.Text = articulo.Ganancia.ToString();
                 InventariotextBox.Text = articulo.Inventario.ToString();
             }
@@ -104,8 +97,8 @@ namespace ProyectoFinalAplicada.UI.Registro
         {
             IdnumericUpDown.Value = 0;
             DescripciontextBox.Clear();
-            PreciotextBox.Clear();
             CostotextBox.Clear();
+            PreciotextBox.Clear();
             GananciatextBox.Clear();
         }
 
@@ -119,19 +112,28 @@ namespace ProyectoFinalAplicada.UI.Registro
             else
                 MessageBox.Show("No se elimino", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        private float ToFloat(object valor)
+        private int ToInt(object valor)
         {
-            float retorno = 0;
-            float.TryParse(valor.ToString(), out retorno);
+            int retorno = 0;
+            int.TryParse(valor.ToString(), out retorno);
 
             return retorno;
         }
 
         private void PreciotextBox_TextChanged(object sender, EventArgs e)
         {
-            float costo = ToFloat(CostotextBox.Text);
-            float precio = ToFloat(PreciotextBox.Text);
-            GananciatextBox.Text = ArticuloBLL.CalcularGanancia(costo, precio).ToString();
+            int cos;
+            bool resul = int.TryParse(CostotextBox.Text, out cos);
+            if (!resul)
+                return;
+
+            int pre;
+            bool resu = int.TryParse(PreciotextBox.Text, out pre);
+            if (!resul)
+                return;
+
+            GananciatextBox.Text = ArticuloBLL.CalcularGanancia(cos, pre).ToString();
+
         }
 
         private void CostotextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -176,6 +178,11 @@ namespace ProyectoFinalAplicada.UI.Registro
                 MessageBox.Show("Solo Numero", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void rArticulos_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

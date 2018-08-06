@@ -66,6 +66,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{F7635F0B-1337-4143-90CE-4158D69B25D0}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{674C94B4-5EBC-4741-BB87-E8CFCB50961E}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{B89EA515-FFA2-4F2B-8609-A53F1B5DB40B}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProyectoFinalAplicada\ProyectoFinalAplicada.csproj">
       <Project>{029645F7-E6A0-4680-BBFD-A9879B1DE706}</Project>
       <Name>ProyectoFinalAplicada</Name>

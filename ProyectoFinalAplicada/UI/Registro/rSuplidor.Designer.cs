@@ -106,6 +106,7 @@
             this.NombretextBox.Name = "NombretextBox";
             this.NombretextBox.Size = new System.Drawing.Size(96, 20);
             this.NombretextBox.TabIndex = 50;
+            this.NombretextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NombretextBox_KeyPress);
             // 
             // IdSuplidornumericUpDown
             // 
@@ -209,7 +210,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(236, 236);
+            this.label3.Location = new System.Drawing.Point(242, 45);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 13);
             this.label3.TabIndex = 67;
@@ -217,7 +218,7 @@
             // 
             // CuentaPagartextBox
             // 
-            this.CuentaPagartextBox.Location = new System.Drawing.Point(231, 252);
+            this.CuentaPagartextBox.Location = new System.Drawing.Point(239, 61);
             this.CuentaPagartextBox.Name = "CuentaPagartextBox";
             this.CuentaPagartextBox.Size = new System.Drawing.Size(100, 20);
             this.CuentaPagartextBox.TabIndex = 68;
@@ -228,7 +229,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ProyectoFinalAplicada.Properties.Resources.proveedor_cliente_1500x800;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(343, 339);
+            this.ClientSize = new System.Drawing.Size(353, 333);
             this.Controls.Add(this.CuentaPagartextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.CedulamaskedTextBox);

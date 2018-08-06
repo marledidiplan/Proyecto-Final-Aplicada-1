@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Linq.Expressions;
+using BLL;
+using DAL;
+using Entidades;
 using System.Data.Entity;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.DAL;
+using System.Linq.Expressions;
 
-namespace ProyectoFinalAplicada.BLL
+namespace BLL
 {
-  public class SuplidorBLL
+    public class EntradaBalanceBLL
     {
-        public static bool Guardar(Suplidor sublidor)
+        public static bool Guardar(EntradaBalance entrada)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.sublidors.Add(sublidor) != null)
+                if (contexto.entradaBalances.Add(entrada) != null)
                 {
+                    contexto.balances.Find(entrada.BalanceId).Monto += entrada.Monto;
                     contexto.SaveChanges();
                     paso = true;
                 }
@@ -30,13 +32,13 @@ namespace ProyectoFinalAplicada.BLL
             return paso;
         }
 
-        public static bool Modificar(Suplidor sublidor)
+        public static bool Modificar(EntradaBalance entrada)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
             try
             {
-                contexto.Entry(sublidor).State = EntityState.Modified;
+                contexto.Entry(entrada).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
                     paso = true;
@@ -51,32 +53,32 @@ namespace ProyectoFinalAplicada.BLL
 
         }
 
-        public static Suplidor Buscar(int id)
+        public static EntradaBalance Buscar(int id)
         {
             Contexto contexto = new Contexto();
-            Suplidor sublidor = new Suplidor();
+            EntradaBalance entrada = new EntradaBalance();
 
             try
             {
-                sublidor = contexto.sublidors.Find(id);
+                entrada = contexto.entradaBalances.Find(id);
                 contexto.Dispose();
             }
             catch (Exception)
             {
                 throw;
             }
-            return sublidor;
+            return entrada;
         }
 
         public static bool Eliminar(int id)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
-            Suplidor sublidor = new Suplidor();
+            EntradaBalance entrada = new EntradaBalance();
             try
             {
-                sublidor = contexto.sublidors.Find(id);
-                contexto.sublidors.Remove(sublidor);
+                entrada = contexto.entradaBalances.Find(id);
+                contexto.entradaBalances.Remove(entrada);
                 if (contexto.SaveChanges() > 0)
                 {
                     paso = true;
@@ -89,21 +91,21 @@ namespace ProyectoFinalAplicada.BLL
             return paso;
         }
 
-        public static List<Suplidor> GetList(Expression<Func<Suplidor, bool>> expression)
+        public static List<EntradaBalance> GetList(Expression<Func<EntradaBalance, bool>> expression)
         {
             Contexto contexto = new Contexto();
-            List<Suplidor> sublidor = new List<Suplidor>();
+            List<EntradaBalance> entrada = new List<EntradaBalance>();
 
             try
             {
-                sublidor = contexto.sublidors.Where(expression).ToList();
+                entrada = contexto.entradaBalances.Where(expression).ToList();
                 contexto.Dispose();
             }
             catch (Exception)
             {
                 throw;
             }
-            return sublidor;
+            return entrada;
         }
 
     }

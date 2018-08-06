@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.DAL;
-using ProyectoFinalAplicada.BLL;
+using BLL;
+using Entidades;
 
 namespace ProyectoFinalAplicada.UI.Registro
 {
@@ -68,7 +61,7 @@ namespace ProyectoFinalAplicada.UI.Registro
         public bool Errores()
         {
             bool Errores = false;
-            if (String.IsNullOrWhiteSpace(NombretextBox.Text))
+            if (String.IsNullOrEmpty(NombretextBox.Text))
             {
                 errorProvider.SetError(NombretextBox, "Nombre Vacio");
                 Errores = true;
@@ -78,12 +71,12 @@ namespace ProyectoFinalAplicada.UI.Registro
                 errorProvider.SetError(DirecciontextBox, "Direccion Vacia");
                 Errores = true;
             }
-            if (String.IsNullOrWhiteSpace(CedulamaskedTextBox.Text))
+            if (!CedulamaskedTextBox.MaskFull)
             {
                 errorProvider.SetError(CedulamaskedTextBox, "Cedula Vacia");
                 Errores = true;
             }
-            if (String.IsNullOrWhiteSpace(TelefonomaskedTextBox.Text))
+            if (!TelefonomaskedTextBox.MaskFull)
             {
                 errorProvider.SetError(TelefonomaskedTextBox, "Telefono Vacio");
                 Errores = true;
@@ -157,6 +150,29 @@ namespace ProyectoFinalAplicada.UI.Registro
         private void TelefonomaskedTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void NombretextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo Letras", "Error",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = false;
+               
+            }
         }
     }
 }

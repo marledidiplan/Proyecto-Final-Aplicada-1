@@ -1,42 +1,51 @@
-﻿using System;
+﻿using BLL;
+using DAL;
+using Entidades;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+
+
 using System.Windows.Forms;
-using System.Linq.Expressions;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.BLL;
-using System.Data.Entity;
-using System.Threading.Tasks;
-using ProyectoFinalAplicada.DAL;
+
 
 
 namespace ProyectoFinalAplicada.UI.Registro
 {
     public partial class rCompra : Form
     {
+       
         public rCompra()
         {
             InitializeComponent();
             LlenarComboBox();
+           
+        }
+
+
+        private float ToFloat(object valor)
+        {
+            float retorno = 0;
+            float.TryParse(valor.ToString(), out retorno);
+
+            return retorno;
         }
 
         private Compra LlenaClase()
         {
-            TotaltextBox.Text = 0.ToString();
-            SubTotaltextBox.Text = 0.ToString();
-            ItbistextBox.Text = 0.ToString();
+
             Compra compra = new Compra();
+            
             compra.CompraId = Convert.ToInt32(IdnumericUpDown.Value);
             compra.Fecha = FechadateTimePicker.Value;
-            compra.Total = Convert.ToSingle(TotaltextBox.Text);
-            compra.SubTotal = Convert.ToSingle(SubTotaltextBox.Text);
-            compra.Itbis = Convert.ToSingle(ItbistextBox.Text);
+            compra.BalanceId = 1;
+            compra.Total = Convert.ToInt32(TotaltextBox.Text.ToString());
+            compra.SubTotal = Convert.ToInt32(SubTotaltextBox.Text.ToString());
+            compra.Itbis = Convert.ToDecimal(ItbistextBox.Text.ToString());
             compra.SuplidorId = Convert.ToInt32(SuplidorcomboBox.SelectedValue);
             compra.UsuarioId = Convert.ToInt32(UsuariocomboBox.SelectedValue);
+            compra.Efectivo = Convert.ToInt32(EfectivonumericUpDown.Value);
+            compra.Devuelta = Convert.ToInt32(DevueltanumericUpDown.Value);
+            compra.General = Convert.ToInt32(EfectivonumericUpDown.Value) - Convert.ToInt32(DevueltanumericUpDown.Value);
             foreach (DataGridViewRow item in CompradataGridView.Rows)
             {
                 compra.AgregarDetalle(
@@ -48,7 +57,6 @@ namespace ProyectoFinalAplicada.UI.Registro
                     ToInt(item.Cells["precio"].Value),
                     ToInt(item.Cells["importe"].Value)
                     );
-
             }
             return compra;
         }
@@ -66,43 +74,73 @@ namespace ProyectoFinalAplicada.UI.Registro
         {
             IdnumericUpDown.Value = 0;
             FechadateTimePicker.Value = DateTime.Now;
-            ArticulocomboBox.SelectedIndex = 0;
-            SuplidorcomboBox.SelectedIndex = 0;
-            UsuariocomboBox.SelectedIndex = 0;
+            ArticulocomboBox.Text = string.Empty;
+            SuplidorcomboBox.Text = string.Empty;
+            UsuariocomboBox.Text = string.Empty;
             CantidadtextBox.Clear();
             PreciotextBox.Clear();
             ImportetextBox.Clear();
             SubTotaltextBox.Clear();
             TotaltextBox.Clear();
             ItbistextBox.Clear();
+            EfectivonumericUpDown.Value = 0;
+            DevueltanumericUpDown.Value = 0;
             CompradataGridView.DataSource = null;
             errorProvider.Clear();
         }
 
+        
+
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
-            Compra compra = LlenaClase();
-            bool paso = false;
+            //if (CompradataGridView.RowCount > 0 && TotaltextBox.Text != "")
+            //{
+                Compra compra = LlenaClase();
+                Balance balance = new Balance();
+                PagoCompra pago = new PagoCompra();
+                bool paso = false;
 
-            if(Errores())
-            {
-                MessageBox.Show("Revisar todos los campos", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            if (IdnumericUpDown.Value == 0)
-                paso = BLL.CompraBLL.Guardar(compra);
+                if (Errores())
+                {
+                    MessageBox.Show("Revisar todos los campos", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                
+                if (TipoCompracomboBox.SelectedIndex == 0)
+                {
+                    balance.Monto -= compra.Total;
+
+                }
+                else
+                {
+                    pago.Deuda += compra.Total;
+                }
+                if (IdnumericUpDown.Value == 0)
+                {
+                    paso = BLL.CompraBLL.Guardar(compra);
+                    //if (Guar(compra))
+                        MessageBox.Show("Guardado!!", "Exito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    paso = BLL.CompraBLL.Modificar(LlenaClase());
+                    MessageBox.Show("Modificado!!", "Exito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                if (paso)
+                {
+                    Nuevobutton.PerformClick();                    
+                }
             else
-                paso = BLL.CompraBLL.Modificar(LlenaClase());
-            if (paso)
             {
-                Nuevobutton.PerformClick();
-                MessageBox.Show("Guardado!!", "Exito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
                 MessageBox.Show("No se pudo guardar!!", "Fallo",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+            }
+                   
+        //}
+            //else
+            //    MessageBox.Show("Compra Vacia!, por favor agregue al menos un Item");
         }
 
         public void LlenarCampos(Compra compra)
@@ -114,7 +152,8 @@ namespace ProyectoFinalAplicada.UI.Registro
             TotaltextBox.Text = compra.Total.ToString();
             SubTotaltextBox.Text = compra.SubTotal.ToString();
             ItbistextBox.Text = compra.Itbis.ToString();
-
+            EfectivonumericUpDown.Value = compra.Efectivo;
+            DevueltanumericUpDown.Value = compra.Devuelta;
             CompradataGridView.DataSource = compra.Detalles;
             CompradataGridView.Columns["id"].Visible = false;
             CompradataGridView.Columns["compraDetalleId"].Visible = false;
@@ -159,12 +198,38 @@ namespace ProyectoFinalAplicada.UI.Registro
         private void Eliminarbutton_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(IdnumericUpDown.Value);
-
-            if (BLL.CompraBLL.Eliminar(id))
-
-                MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Compra compra = new Compra();
+            if (compra != null)
+            {
+                if (BLL.CompraBLL.Eliminar(id))
+                {
+                    MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    IdnumericUpDown.Value = 0;
+                    FechadateTimePicker.Value = DateTime.Now;
+                    ArticulocomboBox.Text = string.Empty;
+                    SuplidorcomboBox.Text = string.Empty;
+                    UsuariocomboBox.Text = string.Empty;
+                    CantidadtextBox.Clear();
+                    PreciotextBox.Clear();
+                    ImportetextBox.Clear();
+                    SubTotaltextBox.Clear();
+                    TotaltextBox.Clear();
+                    ItbistextBox.Clear();
+                    EfectivonumericUpDown.Value = 0;
+                    DevueltanumericUpDown.Value = 0;
+                    CompradataGridView.DataSource = null;
+                    errorProvider.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("No se puede eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+               
+            }
             else
-                MessageBox.Show("No se puede eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                MessageBox.Show("No existen datos ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Buscarbutton_Click(object sender, EventArgs e)
@@ -199,6 +264,9 @@ namespace ProyectoFinalAplicada.UI.Registro
             UsuariocomboBox.ValueMember = "UsuarioId";
             UsuariocomboBox.DisplayMember = "Nombre";
 
+            TipoCompracomboBox.Items.Clear();
+            TipoCompracomboBox.Items.Add("Contado");
+            TipoCompracomboBox.Items.Add("Credito");
 
         }
         private void Agregarbutton_Click(object sender, EventArgs e)
@@ -216,8 +284,8 @@ namespace ProyectoFinalAplicada.UI.Registro
                     compraDetalleId: (int)IdnumericUpDown.Value,
                     articuloId: (int)ArticulocomboBox.SelectedValue,              
                     cantidad: Convert.ToInt32(CantidadtextBox.Text),
-                    precio: (float)Convert.ToSingle(PreciotextBox.Text),
-                    importe: (float)Convert.ToSingle(ImportetextBox.Text)
+                    precio: (int)Convert.ToInt32(PreciotextBox.Text),
+                    importe: (int)Convert.ToInt32(ImportetextBox.Text)
                     ));
 
             CompradataGridView.DataSource = null;
@@ -225,17 +293,21 @@ namespace ProyectoFinalAplicada.UI.Registro
             CalcularValores(compraDetalles);
         }
 
+
         public void CalcularValores(IList<CompraDetalles> compraDetalles)
         {
-            float Total = 0;
+            int Total = 0;
+            
+
+            
             foreach (var item in compraDetalles)
             {
                 Total += item.Importe;
             }
-            float SubTotal = 0;
-            float Itbis = 0;
-            Itbis = Total * 0.18f;
-            SubTotal = Total - Itbis;
+            int SubTotal = 0;
+            decimal Itbis = 0;
+            Itbis = Total * Convert.ToDecimal(0.18) ;
+            SubTotal = Convert.ToInt32(Total) - Convert.ToInt32(Itbis);
             SubTotaltextBox.Text = SubTotal.ToString();
             ItbistextBox.Text = Itbis.ToString();
             TotaltextBox.Text = Total.ToString();
@@ -244,16 +316,16 @@ namespace ProyectoFinalAplicada.UI.Registro
         }
         public void DisminuirValores(IList<CompraDetalles> compraDetalles)
         {
-            float Total = 0;
+            int Total = 0;
             foreach (var item in compraDetalles)
             {
                 Total -= item.Importe ;
             }
-            float SubTotal = 0;
-            float Itbis = 0;
+            int SubTotal = 0;
+            decimal Itbis = 0;
             Total = Total * (-1);
-            Itbis = Total * 0.18f;
-            SubTotal = Total - Itbis ;
+            Itbis = Total * Convert.ToDecimal(0.18);
+            SubTotal =  Convert.ToInt32(Total) - Convert.ToInt32(Itbis);
             SubTotaltextBox.Text = SubTotal.ToString();
             ItbistextBox.Text = Itbis.ToString();
             TotaltextBox.Text = Total.ToString();
@@ -285,19 +357,19 @@ namespace ProyectoFinalAplicada.UI.Registro
         }
         private void EvaluarImporte()
         {
-            float pasoPrecio = 0;
-            float pasoCantidad = 0;
+            int pasoPrecio = 0;
+            int pasoCantidad = 0;
 
-            float.TryParse(CantidadtextBox.Text, out pasoCantidad);
-            float cantidad = Convert.ToSingle(pasoCantidad);
+            int.TryParse(CantidadtextBox.Text, out pasoCantidad);
+            int cantidad = Convert.ToInt32(pasoCantidad);
 
-            float.TryParse(PreciotextBox.Text, out pasoPrecio);
-            float precio = Convert.ToSingle(pasoPrecio);
+            int.TryParse(PreciotextBox.Text, out pasoPrecio);
+            int precio = Convert.ToInt32(pasoPrecio);
 
             ImportetextBox.Text = BLL.CompraBLL.CalcularImporte(cantidad, precio).ToString();
 
         }
-
+       
         private void CantidadtextBox_TextChanged(object sender, EventArgs e)
         {
             EvaluarPrecio();
@@ -307,6 +379,69 @@ namespace ProyectoFinalAplicada.UI.Registro
         private void ImportetextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void rCompra_Load(object sender, EventArgs e)
+        {
+            
+
+            int id = 1;
+            foreach (var item in BalanceBLL.GetList(f=> f.BalanceId == id))
+            {
+                BalancetextBox.Text = item.Monto.ToString();
+            }
+
+            
+
+        }
+
+        private void TipoCompracomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(TipoCompracomboBox.SelectedIndex ==1 )
+            {
+                EfectivonumericUpDown.Enabled = false;
+                DevueltanumericUpDown.Enabled = false;
+            }
+           else
+            {
+                EfectivonumericUpDown.Enabled = true;
+                DevueltanumericUpDown.Enabled = true;
+            }
+        }
+
+        private void EvaluarDevuelta()
+        {
+            
+            int t;
+            bool resul = int.TryParse(TotaltextBox.Text, out t);
+            if (!resul)
+                return;
+
+
+            int ef;
+            bool result = int.TryParse(EfectivonumericUpDown.Value.ToString(), out ef);
+            if (!resul)
+                return;
+
+            int efectivo = Convert.ToInt32(ef);
+            int total = Convert.ToInt32(t);
+
+
+
+            DevueltanumericUpDown.Value = CompraBLL.CalcularDevuelta(efectivo, total);
+
+        }
+
+        
+
+        private void EfectivotextBox_TextChanged_1(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void EfectivonumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            EvaluarDevuelta();
         }
     }
 }

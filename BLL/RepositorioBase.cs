@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
-using ProyectoFinalAplicada.DAL;
 using System.Data.Entity;
+using DAL;
 
-namespace ProyectoFinalAplicada.BLL
+namespace BLL
 {
     public class RepositorioBase<T> : IDisposable, Repositorio<T> where T : class
     {

@@ -155,10 +155,6 @@
             this.Imprimirbutton.UseVisualStyleBackColor = true;
             this.Imprimirbutton.Click += new System.EventHandler(this.Imprimirbutton_Click);
             // 
-            // articulosBindingSource
-            // 
-            this.articulosBindingSource.DataSource = typeof(ProyectoFinalAplicada.Entidades.Articulos);
-            // 
             // cArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,6 +173,7 @@
             this.Controls.Add(this.label1);
             this.Name = "cArticulos";
             this.Text = "Consulta Articulos";
+            this.Load += new System.EventHandler(this.cArticulos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ConsultadataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.articulosBindingSource)).EndInit();
             this.ResumeLayout(false);

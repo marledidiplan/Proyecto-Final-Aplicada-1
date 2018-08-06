@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
 using System.Data.Entity;
-using ProyectoFinalAplicada.Entidades;
-using ProyectoFinalAplicada.DAL;
+using Entidades;
+using DAL;
 
-namespace ProyectoFinalAplicada.BLL
+namespace BLL
 {
-    public class UsuarioBLL
+  public class SuplidorBLL
     {
-        public static bool Guardar(Usuarios usuario)
+        public static bool Guardar(Suplidor sublidor)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.usuarios.Add(usuario) != null)
+                if (contexto.sublidors.Add(sublidor) != null)
                 {
                     contexto.SaveChanges();
                     paso = true;
@@ -30,13 +29,13 @@ namespace ProyectoFinalAplicada.BLL
             return paso;
         }
 
-        public static bool Modificar(Usuarios usuario)
+        public static bool Modificar(Suplidor sublidor)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
             try
             {
-                contexto.Entry(usuario).State = EntityState.Modified;
+                contexto.Entry(sublidor).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
                     paso = true;
@@ -51,32 +50,32 @@ namespace ProyectoFinalAplicada.BLL
 
         }
 
-        public static Usuarios Buscar(int id)
+        public static Suplidor Buscar(int id)
         {
             Contexto contexto = new Contexto();
-            Usuarios usuario = new Usuarios();
+            Suplidor sublidor = new Suplidor();
 
             try
             {
-                usuario = contexto.usuarios.Find(id);
+                sublidor = contexto.sublidors.Find(id);
                 contexto.Dispose();
             }
             catch (Exception)
             {
                 throw;
             }
-            return usuario;
+            return sublidor;
         }
 
         public static bool Eliminar(int id)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
-            Usuarios usuario = new Usuarios();
+            Suplidor sublidor = new Suplidor();
             try
             {
-                usuario = contexto.usuarios.Find(id);
-                contexto.usuarios.Remove(usuario);
+                sublidor = contexto.sublidors.Find(id);
+                contexto.sublidors.Remove(sublidor);
                 if (contexto.SaveChanges() > 0)
                 {
                     paso = true;
@@ -89,23 +88,22 @@ namespace ProyectoFinalAplicada.BLL
             return paso;
         }
 
-        public static List<Usuarios> GetList(Expression<Func<Usuarios, bool>> expression)
+        public static List<Suplidor> GetList(Expression<Func<Suplidor, bool>> expression)
         {
             Contexto contexto = new Contexto();
-            List<Usuarios> usuario = new List<Usuarios>();
+            List<Suplidor> sublidor = new List<Suplidor>();
 
             try
             {
-                usuario = contexto.usuarios.Where(expression).ToList();
+                sublidor = contexto.sublidors.Where(expression).ToList();
                 contexto.Dispose();
             }
             catch (Exception)
             {
                 throw;
             }
-            return usuario;
+            return sublidor;
         }
-
 
     }
 }

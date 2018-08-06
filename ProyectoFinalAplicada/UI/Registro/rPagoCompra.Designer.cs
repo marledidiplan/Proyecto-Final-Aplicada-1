@@ -43,6 +43,8 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.SuplidorcomboBox = new System.Windows.Forms.ComboBox();
+            this.DeudatextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -50,11 +52,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(181, 89);
+            this.label1.Location = new System.Drawing.Point(15, 167);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Monto por pagar";
+            this.label1.Text = "Pago";
             // 
             // label2
             // 
@@ -74,10 +76,11 @@
             // 
             // MontoPagartextBox
             // 
-            this.MontoPagartextBox.Location = new System.Drawing.Point(272, 86);
+            this.MontoPagartextBox.Location = new System.Drawing.Point(80, 160);
             this.MontoPagartextBox.Name = "MontoPagartextBox";
             this.MontoPagartextBox.Size = new System.Drawing.Size(69, 20);
             this.MontoPagartextBox.TabIndex = 3;
+            this.MontoPagartextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MontoPagartextBox_KeyPress);
             // 
             // label5
             // 
@@ -100,9 +103,9 @@
             // 
             this.Eliminarbutton.Image = global::ProyectoFinalAplicada.Properties.Resources.Cancel_16px;
             this.Eliminarbutton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Eliminarbutton.Location = new System.Drawing.Point(220, 136);
+            this.Eliminarbutton.Location = new System.Drawing.Point(187, 225);
             this.Eliminarbutton.Name = "Eliminarbutton";
-            this.Eliminarbutton.Size = new System.Drawing.Size(94, 35);
+            this.Eliminarbutton.Size = new System.Drawing.Size(78, 34);
             this.Eliminarbutton.TabIndex = 59;
             this.Eliminarbutton.Text = "Eliminar";
             this.Eliminarbutton.UseVisualStyleBackColor = true;
@@ -112,9 +115,9 @@
             // 
             this.Nuevobutton.Image = global::ProyectoFinalAplicada.Properties.Resources.Add_File_16px;
             this.Nuevobutton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Nuevobutton.Location = new System.Drawing.Point(26, 137);
+            this.Nuevobutton.Location = new System.Drawing.Point(17, 225);
             this.Nuevobutton.Name = "Nuevobutton";
-            this.Nuevobutton.Size = new System.Drawing.Size(92, 34);
+            this.Nuevobutton.Size = new System.Drawing.Size(79, 34);
             this.Nuevobutton.TabIndex = 58;
             this.Nuevobutton.Text = "Nuevo";
             this.Nuevobutton.UseVisualStyleBackColor = true;
@@ -124,9 +127,9 @@
             // 
             this.Guardarbutton.Image = global::ProyectoFinalAplicada.Properties.Resources.Save_16px;
             this.Guardarbutton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Guardarbutton.Location = new System.Drawing.Point(124, 135);
+            this.Guardarbutton.Location = new System.Drawing.Point(102, 225);
             this.Guardarbutton.Name = "Guardarbutton";
-            this.Guardarbutton.Size = new System.Drawing.Size(90, 36);
+            this.Guardarbutton.Size = new System.Drawing.Size(79, 34);
             this.Guardarbutton.TabIndex = 57;
             this.Guardarbutton.Text = "Guardar";
             this.Guardarbutton.UseVisualStyleBackColor = true;
@@ -149,7 +152,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 89);
+            this.label3.Location = new System.Drawing.Point(15, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 61;
@@ -158,17 +161,37 @@
             // SuplidorcomboBox
             // 
             this.SuplidorcomboBox.FormattingEnabled = true;
-            this.SuplidorcomboBox.Location = new System.Drawing.Point(66, 81);
+            this.SuplidorcomboBox.Location = new System.Drawing.Point(80, 86);
             this.SuplidorcomboBox.Name = "SuplidorcomboBox";
             this.SuplidorcomboBox.Size = new System.Drawing.Size(98, 21);
             this.SuplidorcomboBox.TabIndex = 62;
+            this.SuplidorcomboBox.SelectedIndexChanged += new System.EventHandler(this.SuplidorcomboBox_SelectedIndexChanged);
+            // 
+            // DeudatextBox
+            // 
+            this.DeudatextBox.Location = new System.Drawing.Point(80, 122);
+            this.DeudatextBox.Name = "DeudatextBox";
+            this.DeudatextBox.ReadOnly = true;
+            this.DeudatextBox.Size = new System.Drawing.Size(69, 20);
+            this.DeudatextBox.TabIndex = 64;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 129);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 13);
+            this.label4.TabIndex = 63;
+            this.label4.Text = "Deuda";
             // 
             // rPagoCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(359, 185);
+            this.ClientSize = new System.Drawing.Size(281, 265);
+            this.Controls.Add(this.DeudatextBox);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.SuplidorcomboBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Buscarbutton);
@@ -183,6 +206,7 @@
             this.Controls.Add(this.label1);
             this.Name = "rPagoCompra";
             this.Text = "Pago Compra";
+            this.Load += new System.EventHandler(this.rPagoCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
@@ -205,5 +229,7 @@
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.ComboBox SuplidorcomboBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox DeudatextBox;
+        private System.Windows.Forms.Label label4;
     }
 }

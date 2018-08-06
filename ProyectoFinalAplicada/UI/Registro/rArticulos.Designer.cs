@@ -228,6 +228,7 @@
             this.Controls.Add(this.label1);
             this.Name = "rArticulos";
             this.Text = "Articulo";
+            this.Load += new System.EventHandler(this.rArticulos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
