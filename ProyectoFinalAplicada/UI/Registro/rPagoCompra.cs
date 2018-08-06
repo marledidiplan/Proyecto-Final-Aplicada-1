@@ -87,7 +87,7 @@ namespace ProyectoFinalAplicada.UI.Registro
                 //MessageBox.Show("Compra Saldada!");
         }
 
-                private void Nuevobutton_Click(object sender, EventArgs e)
+        private void Nuevobutton_Click(object sender, EventArgs e)
         {
             IdnumericUpDown.Value = 0;
             FechadateTimePicker.Value = DateTime.Now;
@@ -103,6 +103,7 @@ namespace ProyectoFinalAplicada.UI.Registro
             {
                 FechadateTimePicker.Value = pago.Fecha;
                 SuplidorcomboBox.SelectedValue = pago.SuplidorId;
+                MontoPagartextBox.Text = pago.MontoPagar.ToString();
                
             }
             else

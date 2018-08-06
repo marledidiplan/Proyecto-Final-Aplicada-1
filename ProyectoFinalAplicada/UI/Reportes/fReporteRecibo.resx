@@ -117,20 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="Imprimirbutton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAANlJREFUOE9j
-        wAf8qrb+B2EolzCo6J7zHxnDDEAXhyrHBCBJZAAzABkQZcC+c0/+RzXvghsAYoPEQIBoF3z48vN/57Jz
-        YAxiwwCGARm1k66nVfb/B2GYjYQwTH1m7aSrDCDGhoNXwBgk2b39A14MUrPv5GkgPgM2hCwD9oMNOE2+
-        ATD1GAYkde4FK8CHk7v24TaAVIxiwKItJ/53zF5PFAapxTBg8ebj8KRKCIPUYhgAwiBJQgCkBqYebEBW
-        7aRLIAYIE2sATH1mzaSL0PQIASBJYjBUORAwMAAAT192lq8ZAcwAAAAASUVORK5CYII=
-</value>
-  </data>
 </root>

@@ -1,9 +1,10 @@
 ﻿using BLL;
 using DAL;
 using Entidades;
+using ProyectoFinalAplicada.UI.Reportes;
 using System;
 using System.Collections.Generic;
-
+using System.Linq.Expressions;
 
 using System.Windows.Forms;
 
@@ -18,9 +19,11 @@ namespace ProyectoFinalAplicada.UI.Registro
         {
             InitializeComponent();
             LlenarComboBox();
-           
+            idreporte.Visible = false;
+            IdtextBox.Visible = false;
+            Imprimirbutton.Visible = false;
         }
-
+       
 
         private float ToFloat(object valor)
         {
@@ -89,7 +92,7 @@ namespace ProyectoFinalAplicada.UI.Registro
             errorProvider.Clear();
         }
 
-        
+       
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
@@ -157,6 +160,7 @@ namespace ProyectoFinalAplicada.UI.Registro
             CompradataGridView.DataSource = compra.Detalles;
             CompradataGridView.Columns["id"].Visible = false;
             CompradataGridView.Columns["compraDetalleId"].Visible = false;
+            
         }
 
         private bool Errores()
@@ -198,38 +202,12 @@ namespace ProyectoFinalAplicada.UI.Registro
         private void Eliminarbutton_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(IdnumericUpDown.Value);
-            Compra compra = new Compra();
-            if (compra != null)
-            {
-                if (BLL.CompraBLL.Eliminar(id))
-                {
-                    MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    IdnumericUpDown.Value = 0;
-                    FechadateTimePicker.Value = DateTime.Now;
-                    ArticulocomboBox.Text = string.Empty;
-                    SuplidorcomboBox.Text = string.Empty;
-                    UsuariocomboBox.Text = string.Empty;
-                    CantidadtextBox.Clear();
-                    PreciotextBox.Clear();
-                    ImportetextBox.Clear();
-                    SubTotaltextBox.Clear();
-                    TotaltextBox.Clear();
-                    ItbistextBox.Clear();
-                    EfectivonumericUpDown.Value = 0;
-                    DevueltanumericUpDown.Value = 0;
-                    CompradataGridView.DataSource = null;
-                    errorProvider.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("No se puede eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-               
-            }
+
+            if (BLL.CompraBLL.Eliminar(id))
+
+                MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
-            {
-                MessageBox.Show("No existen datos ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                MessageBox.Show("No se puede eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void Buscarbutton_Click(object sender, EventArgs e)
@@ -442,6 +420,31 @@ namespace ProyectoFinalAplicada.UI.Registro
         private void EfectivonumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             EvaluarDevuelta();
+        }
+
+        private void ReporteButton_Click(object sender, EventArgs e)
+        {
+            idreporte.Visible = true;
+            IdtextBox.Visible = true;
+            Imprimirbutton.Visible = true;
+        }
+
+        private void Imprimirbutton_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(IdtextBox.Text))
+            {
+                errorProvider.SetError(IdtextBox, "Reporte Vacio");
+            }
+            else
+            {
+                int id = ToInt(idreporte);
+                List<Compra> compras = new List<Compra>();
+                compras = CompraBLL.GetList(c => c.CompraId == id);
+
+                fReporteRecibo fReporte = new fReporteRecibo(compras);
+                fReporte.ShowDialog();
+            } 
+               
         }
     }
 }

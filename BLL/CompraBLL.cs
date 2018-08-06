@@ -56,7 +56,19 @@ namespace BLL
             bool paso = false;
             Contexto contexto = new Contexto();
             try
+
             {
+                var comprar = contexto.compras.Find(compra.CompraId);
+                foreach (var item in comprar.Detalles)
+                {
+                    contexto.articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+                    if (!compra.Detalles.ToList().Exists(m => m.Id == item.Id))
+                    {
+                        contexto.articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+                        // item.Articulo = null;
+                        contexto.Entry(item).State = EntityState.Deleted;
+                    }
+                }
 
                 var balance = contexto.balances.Find(compra.BalanceId);
                 if (compra.Total == compra.General)
@@ -70,7 +82,7 @@ namespace BLL
                     contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar += compra.Total;
                     balance.Monto -= compra.BalanceC;
 
-                    var suplidorr= contexto.sublidors.Find(compra.SuplidorId);
+                    var suplidorr = contexto.sublidors.Find(compra.SuplidorId);
                     int desigualdal = compra.Total + suplidorr.CuentasPorPagar;
 
                     Suplidor supli = contexto.sublidors.Find(compra.SuplidorId);
@@ -85,7 +97,7 @@ namespace BLL
 
                 }
 
-                var comprar = contexto.compras.Find(compra.CompraId);
+
 
                 //var TotalSupli = contexto.sublidors.Find(compra.SuplidorId);
                 //var TotalSupliAnt = contexto.sublidors.Find(comprar.SuplidorId);
@@ -98,22 +110,14 @@ namespace BLL
                 //    //SuplidorBLL.Modificar(TotalSupliAnt);
                 //}
 
-                foreach (var item in comprar.Detalles)
-                {
-                    contexto.articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
-                    if (!compra.Detalles.ToList().Exists(m => m.Id == item.Id ))
-                    {
-                        contexto.articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
-                        item.Articulo = null;
-                        contexto.Entry(item).State = EntityState.Deleted; 
-                    }
-                }
+
                 foreach (var item in compra.Detalles)
                 {
                     contexto.articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
                     var state = item.Id > 0 ? EntityState.Modified : EntityState.Added;
                     contexto.Entry(item).State = state;
                 }
+
 
 
 
@@ -164,6 +168,7 @@ namespace BLL
             Contexto contexto = new Contexto();
             Compra compra = contexto.compras.Find(id);
             PagoCompra pago = contexto.pagoCompras.Find(id);
+            Suplidor suplidor = contexto.sublidors.Find(id);
             try
             {
                 
@@ -172,8 +177,16 @@ namespace BLL
                     var Articulos = contexto.articulos.Find(item.ArticuloId);
                     Articulos.Inventario -= item.Cantidad;
                 }
-                contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar -= pago.MontoPagar;
+
+
+                contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar -= compra.Total ;
+                //pago.MontoPagar -= suplidor.CuentasPorPagar;
+                //contexto.pagoCompras.Find(pago.SuplidorId).MontoPagar -= suplidor.CuentasPorPagar;
+                    
+         
+               
                 contexto.balances.Find(compra.BalanceId).Monto += compra.BalanceC;
+                compra.Detalles.Count();
 
                 contexto.compras.Remove(compra);
                 if (contexto.SaveChanges() > 0)
@@ -195,8 +208,12 @@ namespace BLL
 
             try
             {
+                foreach (var item in compra)
+                {
+                    item.Detalles.Count();
+                }
                 compra = contexto.compras.Where(expression).ToList();
-                contexto.Dispose();
+               // contexto.Dispose();
             }
             catch (Exception)
             {

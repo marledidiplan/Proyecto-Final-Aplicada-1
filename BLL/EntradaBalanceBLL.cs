@@ -38,6 +38,11 @@ namespace BLL
             Contexto contexto = new Contexto();
             try
             {
+                EntradaBalance entraB = Buscar(entrada.EntradaBalanceId);
+                int desigualdad = entrada.Monto - entraB.Monto;
+                var disimilitud = contexto.balances.Find(entraB.BalanceId);
+                disimilitud.Monto += disimilitud.Monto;
+
                 contexto.Entry(entrada).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
@@ -57,10 +62,12 @@ namespace BLL
         {
             Contexto contexto = new Contexto();
             EntradaBalance entrada = new EntradaBalance();
+            Balance balance = new Balance();
 
             try
             {
                 entrada = contexto.entradaBalances.Find(id);
+                //balance = contexto.balances.Find(id);
                 contexto.Dispose();
             }
             catch (Exception)

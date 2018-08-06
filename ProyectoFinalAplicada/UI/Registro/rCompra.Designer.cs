@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rCompra));
             this.label1 = new System.Windows.Forms.Label();
             this.IdnumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
@@ -67,6 +68,10 @@
             this.label15 = new System.Windows.Forms.Label();
             this.EfectivonumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.DevueltanumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.ReporteButton = new System.Windows.Forms.Button();
+            this.IdtextBox = new System.Windows.Forms.TextBox();
+            this.Imprimirbutton = new System.Windows.Forms.Button();
+            this.idreporte = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CompradataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -300,7 +305,7 @@
             // 
             this.Eliminarbutton.Image = global::ProyectoFinalAplicada.Properties.Resources.Cancel_16px;
             this.Eliminarbutton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Eliminarbutton.Location = new System.Drawing.Point(279, 449);
+            this.Eliminarbutton.Location = new System.Drawing.Point(299, 434);
             this.Eliminarbutton.Name = "Eliminarbutton";
             this.Eliminarbutton.Size = new System.Drawing.Size(98, 36);
             this.Eliminarbutton.TabIndex = 56;
@@ -312,7 +317,7 @@
             // 
             this.Nuevobutton.Image = global::ProyectoFinalAplicada.Properties.Resources.Add_File_16px;
             this.Nuevobutton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Nuevobutton.Location = new System.Drawing.Point(58, 450);
+            this.Nuevobutton.Location = new System.Drawing.Point(78, 435);
             this.Nuevobutton.Name = "Nuevobutton";
             this.Nuevobutton.Size = new System.Drawing.Size(96, 36);
             this.Nuevobutton.TabIndex = 55;
@@ -324,7 +329,7 @@
             // 
             this.Guardarbutton.Image = global::ProyectoFinalAplicada.Properties.Resources.Save_16px;
             this.Guardarbutton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Guardarbutton.Location = new System.Drawing.Point(170, 449);
+            this.Guardarbutton.Location = new System.Drawing.Point(190, 434);
             this.Guardarbutton.Name = "Guardarbutton";
             this.Guardarbutton.Size = new System.Drawing.Size(94, 37);
             this.Guardarbutton.TabIndex = 54;
@@ -429,6 +434,44 @@
             this.DevueltanumericUpDown.Size = new System.Drawing.Size(73, 20);
             this.DevueltanumericUpDown.TabIndex = 66;
             // 
+            // ReporteButton
+            // 
+            this.ReporteButton.Location = new System.Drawing.Point(412, 476);
+            this.ReporteButton.Name = "ReporteButton";
+            this.ReporteButton.Size = new System.Drawing.Size(75, 23);
+            this.ReporteButton.TabIndex = 67;
+            this.ReporteButton.Text = "Reporte";
+            this.ReporteButton.UseVisualStyleBackColor = true;
+            this.ReporteButton.Click += new System.EventHandler(this.ReporteButton_Click);
+            // 
+            // IdtextBox
+            // 
+            this.IdtextBox.Location = new System.Drawing.Point(502, 501);
+            this.IdtextBox.Name = "IdtextBox";
+            this.IdtextBox.Size = new System.Drawing.Size(39, 20);
+            this.IdtextBox.TabIndex = 68;
+            // 
+            // Imprimirbutton
+            // 
+            this.Imprimirbutton.Image = ((System.Drawing.Image)(resources.GetObject("Imprimirbutton.Image")));
+            this.Imprimirbutton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.Imprimirbutton.Location = new System.Drawing.Point(550, 497);
+            this.Imprimirbutton.Name = "Imprimirbutton";
+            this.Imprimirbutton.Size = new System.Drawing.Size(67, 26);
+            this.Imprimirbutton.TabIndex = 69;
+            this.Imprimirbutton.Text = "Imprimir";
+            this.Imprimirbutton.UseVisualStyleBackColor = true;
+            this.Imprimirbutton.Click += new System.EventHandler(this.Imprimirbutton_Click);
+            // 
+            // idreporte
+            // 
+            this.idreporte.AutoSize = true;
+            this.idreporte.Location = new System.Drawing.Point(446, 501);
+            this.idreporte.Name = "idreporte";
+            this.idreporte.Size = new System.Drawing.Size(52, 13);
+            this.idreporte.TabIndex = 70;
+            this.idreporte.Text = "Id reporte";
+            // 
             // rCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -436,6 +479,10 @@
             this.BackgroundImage = global::ProyectoFinalAplicada.Properties.Resources.organiza_tus_compras_reference;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(638, 524);
+            this.Controls.Add(this.idreporte);
+            this.Controls.Add(this.Imprimirbutton);
+            this.Controls.Add(this.IdtextBox);
+            this.Controls.Add(this.ReporteButton);
             this.Controls.Add(this.DevueltanumericUpDown);
             this.Controls.Add(this.EfectivonumericUpDown);
             this.Controls.Add(this.label14);
@@ -526,5 +573,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.NumericUpDown EfectivonumericUpDown;
         private System.Windows.Forms.NumericUpDown DevueltanumericUpDown;
+        private System.Windows.Forms.TextBox IdtextBox;
+        private System.Windows.Forms.Button ReporteButton;
+        private System.Windows.Forms.Label idreporte;
+        private System.Windows.Forms.Button Imprimirbutton;
     }
 }

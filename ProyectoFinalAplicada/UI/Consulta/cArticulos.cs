@@ -9,7 +9,7 @@ using BLL;
 
 namespace ProyectoFinalAplicada.UI.Consulta
 {
-    public partial class cArticulos : Form
+    public partial class cArticulos : Form-
     {
         private List<Articulos>  articulo= new List<Articulos>();
         public cArticulos()

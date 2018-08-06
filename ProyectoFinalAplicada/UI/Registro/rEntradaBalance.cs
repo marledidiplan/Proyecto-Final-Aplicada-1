@@ -82,6 +82,7 @@ namespace ProyectoFinalAplicada.UI.Registro
             {
                 FechadateTimePicker.Value = entrada.Fecha;
                 montotextBox.Text = entrada.Monto.ToString();
+                //entrada.BalanceId.ToString();
             }
             else
                 MessageBox.Show("No se encontro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

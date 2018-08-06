@@ -14,38 +14,73 @@ namespace ProyectoFinalAplicada.BLL.Tests
         {
             Compra compra = new Compra();
             bool paso;
-            compra.CompraId = 3;
+            compra.CompraId = 4;
+            compra.UsuarioId = 1;
+            compra.SuplidorId = 1;
+            compra.BalanceC = 1;
             compra.Fecha = DateTime.Now;
-            compra.Detalles.Add(new CompraDetalles(0, 0,  1, 3, 20, 5));
-            compra.Detalles.Add(new CompraDetalles(0, 0,  4, 6, 10, 7));
+            compra.Total = 100;
+            compra.SubTotal = 75;
+            compra.Itbis = 25;
+            compra.BalanceC = 300;
+            compra.Efectivo = 200;
+            compra.Devuelta = 100;
+            compra.General = 100;
+            compra.TipoDePago = "Contado";
             paso = CompraBLL.Guardar(compra);
+           
 
-
-            Assert.Fail();
+            Assert.AreEqual(paso,true);
         }
 
         [TestMethod()]
         public void ModificarTest()
         {
-            Assert.Fail();
+            Compra compra = new Compra();
+            bool paso;
+            compra.CompraId = 4;
+            compra.UsuarioId = 1;
+            compra.SuplidorId = 1;
+            compra.BalanceC = 1;
+            compra.Fecha = DateTime.Now;
+            compra.Total = 150;
+            compra.SubTotal = 125;
+            compra.Itbis = 25;
+            compra.BalanceC = 300;
+            compra.Efectivo = 200;
+            compra.Devuelta = 100;
+            compra.General = 100;
+            compra.TipoDePago = "Contado";
+            paso = CompraBLL.Modificar(compra);
+
+
+            Assert.AreEqual(paso, true);
         }
 
         [TestMethod()]
         public void BuscarTest()
         {
-            Assert.Fail();
+            Compra compra = new Compra();
+            int id = 1;
+            compra = CompraBLL.Buscar(id);
+            Assert.IsNotNull(compra);
         }
 
         [TestMethod()]
         public void EliminarTest()
         {
-            Assert.Fail();
+
+            bool paso;
+            int id = 2;
+            paso = CompraBLL.Eliminar(id);
+            Assert.AreEqual(paso, true);
         }
 
         [TestMethod()]
         public void GetListTest()
         {
-            Assert.Fail();
+            var comprass = CompraBLL.GetList(x => true);
+            Assert.IsNotNull(comprass);
         }
 
         [TestMethod()]
